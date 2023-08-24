@@ -1,0 +1,82 @@
+put:
+  tags : 
+  - got-data 
+  operationId: setFavourteCharacter
+  summary : This API for set favourte character
+  
+  description :  This API for set favourte character
+  
+  parameters : 
+     - $ref: '../common/common-requestheaders.yaml#/Accept'
+     - $ref: '../common/common-requestheaders.yaml#/CorrelationId'
+     
+     - in: path
+       description: character ID
+       name: id  
+       required: true
+       schema:
+          type: integer
+     
+     - in: query
+       name: favourite
+       schema:
+          type: boolean
+       description: To set favourite value 
+     
+  responses:
+     '200':
+       description: Successfull
+       headers :
+          correlationId:
+            schema :
+              type: string
+            description: "Helps in getting the flow of the request when we log the correlationld"
+
+     '400':
+        description: Invalid Input
+        headers :
+          CorrelationId:
+            schema :
+               type: string
+            description: "Helps in getting the flow of the request when we log the correlationid"
+        content :
+            application/json:
+              schema :
+                $ref: '../common/error-response.yaml'
+               
+     '404':
+         description: Resource not Found
+         headers :
+           CorrelationId:
+             schema :
+                type: string
+             description: "Helps in getting the flow of the request when ve log the correlationid"
+         content :
+             application/json:
+                schema :
+                  $ref: '../common/error-response.yaml'
+                  
+     
+     '500':
+         description: Internal Server Error
+         headers :
+           CorrelationId:
+             schema :
+                type: string
+             description: "Helps in getting the flow of the request when ve log the correlationid"
+         content :
+             application/json:
+                schema :
+                  $ref: '../common/error-response.yaml'
+      
+     '503':
+         description: Service request currently not available
+         headers :
+           CorrelationId:
+             schema :
+                type: string
+             description: "Helps in getting the flow of the request when ve log the correlationid"
+         content :
+             application/json:
+                schema :
+                  $ref: '../common/error-response.yaml'

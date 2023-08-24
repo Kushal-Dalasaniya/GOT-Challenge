@@ -1,0 +1,88 @@
+get:
+  tags : 
+  - got-data
+  operationId: getHousesList
+  summary : This API for for get House list
+  
+  description :  This API for get House list
+  
+  parameters : 
+     - $ref: '../common/common-requestheaders.yaml#/Accept'
+     - $ref: '../common/common-requestheaders.yaml#/CorrelationId'
+ 
+ 
+  responses:
+     '200':
+       description: Successfull
+       headers :
+          correlationId:
+            schema :
+              type: string
+            description: "Helps in getting the flow of the request when we log the correlationld"
+       content :
+            application/json:
+              schema :
+                $ref: '#/components/schemas/ListOfHouses'
+       
+
+     '400':
+        description: Invalid Input
+        headers :
+          CorrelationId:
+            schema :
+               type: string
+            description: "Helps in getting the flow of the request when we log the correlationid"
+        content :
+            application/json:
+              schema :
+                $ref: '../common/error-response.yaml'
+               
+     '404':
+         description: Resource not Found
+         headers :
+           CorrelationId:
+             schema :
+                type: string
+             description: "Helps in getting the flow of the request when ve log the correlationid"
+         content :
+             application/json:
+                schema :
+                  $ref: '../common/error-response.yaml'
+                  
+     
+     '500':
+         description: Internal Server Error
+         headers :
+           CorrelationId:
+             schema :
+                type: string
+             description: "Helps in getting the flow of the request when ve log the correlationid"
+         content :
+             application/json:
+                schema :
+                  $ref: '../common/error-response.yaml'
+      
+     '503':
+         description: Service request currently not available
+         headers :
+           CorrelationId:
+             schema :
+                type: string
+             description: "Helps in getting the flow of the request when ve log the correlationid"
+         content :
+             application/json:
+                schema :
+                  $ref: '../common/error-response.yaml'
+                  
+                  
+components:
+  schemas : 
+    ListOfHouses : 
+       title : ListOfHouses
+       type : object
+       properties:
+         houseList:
+             type: array
+             items:
+               type: string
+          

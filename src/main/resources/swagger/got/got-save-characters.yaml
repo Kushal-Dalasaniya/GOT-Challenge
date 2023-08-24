@@ -1,0 +1,175 @@
+post:
+  tags :
+  - got-data 
+  operationId: saveGotCharactersList
+  summary : This API for a save all data
+  
+  description :  This API for a save all data
+  
+  parameters : 
+     - $ref: '../common/common-requestheaders.yaml#/Accept'
+     - $ref: '../common/common-requestheaders.yaml#/CorrelationId'
+  
+  requestBody:
+      description: save all characters details
+      required: true
+      content:
+          application/json:
+            schema: 
+               $ref: '#/components/schemas/GotCharacterList'
+ 
+ 
+  responses:
+     '200':
+       description: Successfull
+       headers :
+          correlationId:
+            schema :
+              type: string
+            description: "Helps in getting the flow of the request when we log the correlationld"
+       
+
+     '400':
+        description: Invalid Input
+        headers :
+          CorrelationId:
+            schema :
+               type: string
+            description: "Helps in getting the flow of the request when we log the correlationid"
+        content :
+            application/json:
+              schema :
+                $ref: '../common/error-response.yaml'
+               
+     '404':
+         description: Resource not Found
+         headers :
+           CorrelationId:
+             schema :
+                type: string
+             description: "Helps in getting the flow of the request when ve log the correlationid"
+         content :
+             application/json:
+                schema :
+                  $ref: '../common/error-response.yaml'
+                  
+     
+     '500':
+         description: Internal Server Error
+         headers :
+           CorrelationId:
+             schema :
+                type: string
+             description: "Helps in getting the flow of the request when ve log the correlationid"
+         content :
+             application/json:
+                schema :
+                  $ref: '../common/error-response.yaml'
+      
+     '503':
+         description: Service request currently not available
+         headers :
+           CorrelationId:
+             schema :
+                type: string
+             description: "Helps in getting the flow of the request when ve log the correlationid"
+         content :
+             application/json:
+                schema :
+                  $ref: '../common/error-response.yaml'
+                  
+
+components:
+  schemas : 
+    GotCharacterList : 
+       title : GotCharacterList
+       type : object
+       properties:
+          characters :
+             type: array
+             items :
+               $ref : '#/components/schemas/CharacterDetails'
+          
+    CharacterDetails :
+       title : CharacterDetails    
+       type : object
+       properties:
+           characterLink:
+             type: string
+           actorName:
+             type: string
+           actorLink:
+             type: string
+           characterName:
+             type: string
+           royal:
+             type: boolean 
+           characterImageThumb:
+             type: string
+           characterImageFull:
+             type: string
+           nickname:
+             type: string
+           houseName:
+             type: string
+           kingsguard: 
+             type: boolean
+           favourite: 
+             type: boolean
+           servedBy:
+             type: array
+             items:
+               type: string
+           siblings:
+             type: array
+             items:
+               type: string
+           guardianOf:
+             type: array
+             items:
+               type: string
+           allies:
+             type: array
+             items:
+               type: string
+           killed:
+             type: array
+             items:
+               type: string
+           killedBy:
+             type: array
+             items:
+               type: string
+           parents:
+             type: array
+             items:
+               type: string
+           abductedBy:
+             type: array
+             items:
+               type: string
+           abducted:
+             type: array
+             items:
+               type: string
+           serves:
+             type: array
+             items:
+               type: string
+           marriedEngaged:
+             type: array
+             items:
+               type: string
+           parentOf:
+             type: array
+             items:
+               type: string
+           guardedBy:
+             type: array
+             items:
+               type: string
+           characterId:
+              type: integer
+            
+       
+    

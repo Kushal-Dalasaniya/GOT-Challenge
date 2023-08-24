@@ -1,0 +1,26 @@
+openapi: 3.0.0
+
+info :
+  version : 0.0.1
+  title : sodoku-api
+  description :
+    API for sudoku game
+    
+ 
+paths :
+
+    '/api/characters/houses':
+     $ref : "./got/got-houses.yaml"
+     
+    'api/save/characters':
+     $ref : "./got/got-save-characters.yaml"
+     
+    '/api/characters/familytree/{houseName}': 
+     $ref : "./got/get-house-char.yaml"
+     
+    '/api/characters/{id}/favourite': 
+     $ref : "./got/set-favourte-character.yaml"
+     
+    '/api/character/{characterId}':
+     $ref : "./got/get-character-details.yaml"
+    
